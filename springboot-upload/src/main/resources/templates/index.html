@@ -75,15 +75,17 @@
                                 <span style="font-size: 1.3em;" id="progressScrollText">100%</span>
                             </div>
                         </div>
-                        <div class="col-12 mt-3">
+                        <div class="col-12 mt-3"    style="height: 50vh;overflow-y: scroll;overflow-x: hidden;">
                             <table class="table">
                                 <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col" data="index">#</th>
+                                        <th scope="col" data="id">id</th>
+                                        <th scope="col" data="money">money</th>
+                                        <th scope="col" data="username">username</th>
+                                        <th scope="col" data="collect">collect</th>
+                                        <th scope="col" data="email">email</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
@@ -200,8 +202,15 @@
                     fileName: file.name,
                     fileMd5: file.md5
                 },
-                success: function (data) {
-                    console.log(data)
+                success: function (res) {
+                    console.log(res)
+                    var endDate = new Date();
+                    if(res.success){
+                        $("#title").text("文件上传耗时:" + (endDate - startDate) / 1000 + "s")
+                    }else{
+                        $("#title").text("上传文件失败耗时:" + (endDate - startDate) / 1000 + "s")
+                    }
+                    getProgressBar(null, 1, null,null)
                 }, error: function () {
                     var endDate = new Date();
                     $("#title").text("上传文件失败耗时:" + (endDate - startDate) / 1000 + "s")
@@ -402,17 +411,35 @@
             console.log(msg.data);
             //发现消息进入,开始处理前端触发逻辑
             var res = JSON.parse(msg.data)
-            if(res.msg=='read'){
-                var endDate = new Date();
-                if(res.success){
-                    $("#title").text("请求上传耗时:" + (endDate - startDate) / 1000 + "s")
-                }else{
-                    $("#title").text("上传文件失败耗时:" + (endDate - startDate) / 1000 + "s")
+            if(res.success){
+                if(res.msg=='read'){
+                    var endDate = new Date();
+                    if(res.success){
+                        $("#title").text("请求上传耗时:" + (endDate - startDate) / 1000 + "s")
+                    }else{
+                        $("#title").text("上传文件失败耗时:" + (endDate - startDate) / 1000 + "s")
+                    }
+                }else if(res.msg == 'process'){
+                    $("#title").text("正在写入");
                 }
-            }else if(res.msg == 'process'){
-                $("#title").text("正在写入");
+                getProgressBar(null, res.data, null, null)
+            }else{
+                $("#title").text(res.msg);
+                var dataCol = []
+                $("tr > th").each((index, item)=>{dataCol.push($(item).attr('data'))})
+                var datalist = res.data
+                $("tbody").empty()
+                for (let datum in datalist) {
+                    var _tr = $("<tr></tr>")
+                    for (const col of dataCol) {
+                        if(col==='index'){
+                            _tr.append($("<td></td>").append(datum).attr("scope","row"))
+                        }else
+                            _tr.append($("<td></td>").append(datalist[datum][col]))
+                    }
+                    _tr.appendTo("tbody")
+                }
             }
-            getProgressBar(null, res.data, null, null)
         };
         //关闭事件
         socket.onclose = function() {

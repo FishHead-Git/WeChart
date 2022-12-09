@@ -214,52 +214,56 @@ public class BigFileController {
             String fileMd5 = request.getParameter("fileMd5");
             // 读取目录里的所有文件
             File dir = new File(fileStorePath + "/" + fileMd5);
-            File[] childs = dir.listFiles();
-            if(Objects.isNull(childs)|| childs.length==0){
-                return null;
-            }
-            // 转成集合，便于排序
-            List<File> fileList = new ArrayList<File>(Arrays.asList(childs));
-            Collections.sort(fileList, new Comparator<File>() {
-                @Override
-                public int compare(File o1, File o2) {
-                    if (Integer.parseInt(o1.getName()) < Integer.parseInt(o2.getName())) {
-                        return -1;
-                    }
-                    return 1;
-                }
-            });
+
             // 合并后的文件
             File outputFile = new File(fileStorePath + "/" + "merge"+ "/" + fileMd5 + "/" + fileName);
-            // 创建文件
-            if(!outputFile.exists()){
-                File mergeMd5Dir = new File(fileStorePath + "/" + "merge"+ "/" + fileMd5);
-                if(!mergeMd5Dir.exists()){
-                    mergeMd5Dir.mkdirs();
+            File[] childs = dir.listFiles();
+            if(Objects.isNull(childs)|| childs.length==0){
+                if(!outputFile.exists()){
+                    return APIResult.FAIL("file is not exist");
                 }
-                outputFile.createNewFile();
+            }else{
+                // 转成集合，便于排序
+                List<File> fileList = new ArrayList<File>(Arrays.asList(childs));
+                Collections.sort(fileList, new Comparator<File>() {
+                    @Override
+                    public int compare(File o1, File o2) {
+                        if (Integer.parseInt(o1.getName()) < Integer.parseInt(o2.getName())) {
+                            return -1;
+                        }
+                        return 1;
+                    }
+                });
+                // 创建文件
+                if(!outputFile.exists()){
+                    File mergeMd5Dir = new File(fileStorePath + "/" + "merge"+ "/" + fileMd5);
+                    if(!mergeMd5Dir.exists()){
+                        mergeMd5Dir.mkdirs();
+                    }
+                    outputFile.createNewFile();
+                }
+                outChannel = new FileOutputStream(outputFile).getChannel();
+                FileChannel inChannel = null;
+                try {
+                    for (File file : fileList) {
+                        inChannel = new FileInputStream(file).getChannel();
+                        inChannel.transferTo(0, inChannel.size(), outChannel);
+                        inChannel.close();
+                        // 删除分片
+                        file.delete();
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                    //发生异常，文件合并失败 ，删除创建的文件
+                    outputFile.delete();
+                    dir.delete();//删除文件夹
+                }finally {
+                    if(inChannel!=null){
+                        inChannel.close();
+                    }
+                }
+                dir.delete(); //删除分片所在的文件夹
             }
-            outChannel = new FileOutputStream(outputFile).getChannel();
-            FileChannel inChannel = null;
-            try {
-                for (File file : fileList) {
-                    inChannel = new FileInputStream(file).getChannel();
-                    inChannel.transferTo(0, inChannel.size(), outChannel);
-                    inChannel.close();
-                    // 删除分片
-                    file.delete();
-                }
-            }catch (Exception e){
-                e.printStackTrace();
-                //发生异常，文件合并失败 ，删除创建的文件
-                outputFile.delete();
-                dir.delete();//删除文件夹
-            }finally {
-                if(inChannel!=null){
-                    inChannel.close();
-                }
-            }
-            dir.delete(); //删除分片所在的文件夹
 
             // 进行读取Excel操作
             try {
@@ -277,7 +281,7 @@ public class BigFileController {
                                     tList.add(users);
                                     return null;
                                 },
-                                (vos, user)->userService.saveBatch(vos, "user",1000),
+                                (vos, user)->userService.saveBatch(vos, "fishhead",1000),
                                 (delVos, errVos)->{},
                                 (errVos)->{
                                     webSocketServer.sendInfo("fishhead", JSON.toJSONString(APIResult.FAIL("有未通过校验数据",errVos)));
@@ -347,7 +351,7 @@ public class BigFileController {
                                 tList.add(users);
                                 return null;
                             },
-                            (vos, user)->userService.saveBatch(vos, "user",1000),
+                            (vos, user)->userService.saveBatch(vos, "fishhead",1000),
                             (delVos, errVos)->{},
                             (errVos)->{
                                 webSocketServer.sendInfo("fishhead", JSON.toJSONString(APIResult.FAIL("有未通过校验数据",errVos)));

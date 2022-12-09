@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     username: root
-    password: 123456
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/pos_system?useUnicode=true&useSSL=false&allowMultiQueries=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
     hikari:
@@ -37,4 +37,4 @@ spring:
 #    dir:  F:\Temp\
 #    chunkSize: 5 242 880
 
-uploadFilePath: F:\Temp\
+uploadFilePath: D:\had_errorExcel\

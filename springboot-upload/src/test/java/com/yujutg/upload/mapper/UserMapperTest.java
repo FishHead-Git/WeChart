@@ -25,10 +25,11 @@ public class UserMapperTest {
     @Autowired
     private UserService userService;
 
+    // {10000-1000=[19015, 20041, 20064, 22606, 25417], 10000-2000=[23234, 21035, 21668, 21277, 23552], 20000-1000=[16638, 19192, 21810, 23766, 20956], 20000-2000=[20115, 19844, 22814, 18980, 24198]}
     @BeforeEach
     void setUp() {
         userList = new LinkedList<>();
-        int size = 1000000;
+        int size = 500000;
         for (int i = 0; i < size; i++) {
             Users users = new Users();
             users.setId(Long.valueOf(i));
@@ -53,7 +54,7 @@ public class UserMapperTest {
         log.info("{}", timeMap);
     }
 
-    @RepeatedTest(1)
+    @RepeatedTest(5)
     void insertBatchByUserThousand() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -79,7 +80,7 @@ public class UserMapperTest {
         timeMap.put(batch + "-" + everyBatch, orDefault);
     }
 
-    @RepeatedTest(10)
+    @RepeatedTest(5)
     void insertBatchByUserThousand2() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -105,7 +106,7 @@ public class UserMapperTest {
         timeMap.put(batch + "-" + everyBatch, orDefault);
     }
 
-    @RepeatedTest(10)
+    @RepeatedTest(5)
     void insertBatchByUserThousand3() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -131,7 +132,7 @@ public class UserMapperTest {
         timeMap.put(batch + "-" + everyBatch, orDefault);
     }
 
-    @RepeatedTest(10)
+    @RepeatedTest(5)
     void insertBatchByUserThousand4() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
