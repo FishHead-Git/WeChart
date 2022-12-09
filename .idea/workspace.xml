@@ -4,7 +4,65 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="983075fc-d2c7-46d9-acf3-4563fa9fb934" name="Default Changelist" comment="" />
+    <list default="true" id="983075fc-d2c7-46d9-acf3-4563fa9fb934" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/UploadApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/config/AsyncThreadPool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/config/MyBatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/config/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/controller/BigFileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/controller/WebController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/dto/RequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/entity/APIResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/entity/JsonResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/entity/MultipartFileParam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/entity/PageDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/entity/Users.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/service/impl/UploadExcelListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/service/impl/UserListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/utils/Base64TypeHandle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/utils/PasswordEncoderUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/java/com/yujutg/upload/websocket/WebSocketServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/sql/table.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/css/webuploader.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/Uploader.swf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.custom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.custom.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.fis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.flashonly.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.flashonly.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.html5nodepend.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.html5nodepend.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.html5only.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.html5only.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.noimage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.noimage.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.nolog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.nolog.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.withoutimage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/static/js/webuploader.withoutimage.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/templates/bigFile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/main/resources/templates/notice.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot-upload/src/test/java/com/yujutg/upload/mapper/UserMapperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5f85ffd4-b7f8-4430-a15c-0474f503fd94.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5f85ffd4-b7f8-4430-a15c-0474f503fd94.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatisplus_quickstart/target/classes/META-INF/mybatisplus_quickstart.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,6 +102,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -199,6 +259,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -209,22 +270,48 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1650269869764" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/springboot-websocket/src/main/java/com/yujutg" />
+    <property name="database.data.extractors.current.export.id" value="Excel (xlsx)" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\program\ideaproject\wechartcode\springboot-websocket\src\main\java\com\yujutg" />
-      <recent name="D:\program\ideaproject\wechartcode\springboot-websocket\src\main\resources" />
+      <recent name="D:\program\ideaproject\wechartcode\springboot-upload\src\main\resources\static\js" />
+      <recent name="D:\program\ideaproject\wechartcode\springboot-upload\src\main\resources" />
+      <recent name="D:\program\ideaproject\wechartcode\springboot-upload\src\main\java\com\yujutg\upload\config" />
+      <recent name="D:\program\ideaproject\wechartcode\springboot-upload\src\main\java\com\yujutg\upload\entity" />
+      <recent name="D:\program\ideaproject\wechartcode\springboot-upload\src\main\java\com\yujutg\upload\service" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\program\ideaproject\wechartcode\springboot-upload\src\main\resources\sql" />
+      <recent name="D:\program\ideaproject\wechartcode\springboot-upload\src\main\resources\static\js" />
+      <recent name="D:\program\ideaproject\wechartcode\springboot-upload\src\main\resources\static\css" />
       <recent name="D:\program\ideaproject\wechartcode\springboot-websocket\src\main\resources" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.yujutg.upload.mapper" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.yujutg.upload.utils" />
+      <recent name="com.yujutg.upload.entity" />
+      <recent name="com.yujutg.upload.dto" />
+      <recent name="com.yujutg.upload.mapper" />
+      <recent name="com.yujutg.upload.websocket" />
     </key>
   </component>
   <component name="RestServicesNavigator">
@@ -241,43 +328,67 @@
       <select />
     </treeState>
   </component>
-  <component name="RunManager" selected="Spring Boot.WebSocketApplication">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
+  <component name="RunManager" selected="Spring Boot.UploadApplication">
+    <configuration name="UserMapperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-upload" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yujutg.upload.mapper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yujutg.upload.mapper" />
+      <option name="MAIN_CLASS_NAME" value="com.yujutg.upload.mapper.UserMapperTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AutoBuildTable.build" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatisplus_quickstart" />
+    <configuration name="UserMapperTest.insertBatchByUserTenThousand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-upload" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.yujutg.generator.*" />
+          <option name="PATTERN" value="com.yujutg.upload.mapper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.yujutg.generator" />
-      <option name="MAIN_CLASS_NAME" value="com.yujutg.generator.AutoBuildTable" />
-      <option name="METHOD_NAME" value="build" />
+      <option name="PACKAGE_NAME" value="com.yujutg.upload.mapper" />
+      <option name="MAIN_CLASS_NAME" value="com.yujutg.upload.mapper.UserMapperTest" />
+      <option name="METHOD_NAME" value="insertBatchByUserTenThousand" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyBatisPlusApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="mybatisplus_quickstart" />
+    <configuration name="UserMapperTest.insertBatchByUserThousand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-upload" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.yujutg.*" />
+          <option name="PATTERN" value="com.yujutg.upload.mapper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yujutg.MyBatisPlusApplication" />
+      <option name="PACKAGE_NAME" value="com.yujutg.upload.mapper" />
+      <option name="MAIN_CLASS_NAME" value="com.yujutg.upload.mapper.UserMapperTest" />
+      <option name="METHOD_NAME" value="insertBatchByUserThousand" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UploadApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="springboot-upload" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yujutg.upload.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yujutg.upload.UploadApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -295,11 +406,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.UserMapperTest.insertBatchByUserTenThousand" />
+      <item itemvalue="JUnit.UserMapperTest" />
+      <item itemvalue="JUnit.UserMapperTest.insertBatchByUserThousand" />
+      <item itemvalue="Spring Boot.UploadApplication" />
+      <item itemvalue="Spring Boot.WebSocketApplication" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.UploadApplication" />
+        <item itemvalue="JUnit.UserMapperTest.insertBatchByUserThousand" />
+        <item itemvalue="JUnit.UserMapperTest" />
+        <item itemvalue="JUnit.UserMapperTest.insertBatchByUserTenThousand" />
         <item itemvalue="Spring Boot.WebSocketApplication" />
-        <item itemvalue="JUnit.AutoBuildTable.build" />
-        <item itemvalue="Spring Boot.MyBatisPlusApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -322,7 +442,13 @@
       <workItem from="1623166745076" duration="901000" />
       <workItem from="1623308055159" duration="11000" />
       <workItem from="1650267546462" duration="2391000" />
-      <workItem from="1657694153399" duration="1264000" />
+      <workItem from="1657694153399" duration="2459000" />
+      <workItem from="1657787100749" duration="611000" />
+      <workItem from="1657929450717" duration="17000" />
+      <workItem from="1669449602136" duration="1610000" />
+      <workItem from="1670080002001" duration="22377000" />
+      <workItem from="1670327612111" duration="9731000" />
+      <workItem from="1670422715638" duration="5889000" />
     </task>
     <task id="LOCAL-00001" summary="2020-09-23">
       <created>1600854710458</created>

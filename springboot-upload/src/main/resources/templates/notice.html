@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>websocket通讯</title>
+  </head>
+  <link th:href="@{/webjars/bootstrap/5.1.0/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+
+  <body>
+    <div class="card text-center">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-1">
+            <input id="userId" name="userId" type="text" value="fishhead" placeholder="用户名">
+          </div>
+          <div class="col-1">
+            <input id="toUserId" name="toUserId" type="text" value="Boss" placeholder="接收人">
+          </div>
+          <div class="col-5">
+            <input id="contentText" name="contentText" type="text" value="" placeholder="内容">
+          </div>
+          <div class="col-5">
+            <a class="btn btn-sm btn-primary text-white" onclick="openSocket()">开启socket</a>
+            <a class="btn btn-sm btn-success text-white" onclick="sendMessage()">ws发送</a>
+<!--            <a class="btn btn-sm btn-info text-white" onclick="sendAsycMessage()">异步发送</a>-->
+            <a class="btn btn-sm btn-info text-white" onclick="openFileWindow()">上传Excel</a>
+            <a class="btn btn-sm btn-info text-white" onclick="downloadExcel()">下载Excel</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body" id="msg_append">
+      </div>
+      <div class="card-footer text-muted">
+        by FishHead
+      </div>
+    </div>
+<!--    <div aria-live="polite" aria-atomic="true" class="position-relative">-->
+      <div class="toast-container position-absolute bottom-0 end-0 p-3" id="toastTable">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="me-auto" id="fromUser">Bootstrap</strong>
+            <small class="text-muted">just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body" id="toastBody">
+            See? Just like this.
+          </div>
+        </div>
+      </div>
+<!--    </div>-->
+  </body>
+  <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/webjars/popper.js/1.16.0/umd/popper.js}"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/5.1.0/js/bootstrap.js"></script>
+  <!--  <script type="text/javascript" src="/webjars/bootstrap/5.1.0/js/bootstrap.bundle.js"></script>-->
+  <!--  <script type="text/javascript" src="/webjars/bootstrap/5.1.0/js/bootstrap.esm.js"></script>-->
+  <script>
+    let socket;
+
+    let toastElList = Array.prototype.slice.call(document.querySelectorAll('.toast'))
+    let toastList = toastElList.map(function (toastEl) {
+      return new bootstrap.Toast(toastEl)
+    })
+    function openSocket() {
+
+      const socketUrl = "ws://localhost:9080/api/msg/" + $("#userId").val();
+      console.log(socketUrl);
+      if(socket!=null){
+        socket.close();
+        socket=null;
+      }
+      socket = new WebSocket(socketUrl);
+      //打开事件
+      socket.onopen = function() {
+        console.log("websocket已打开");
+      };
+      //获得消息事件
+      socket.onmessage = function(msg) {
+        console.log(msg.data);
+        //发现消息进入,开始处理前端触发逻辑
+        var res = JSON.parse(msg.data)
+        $("#msg_append").append($("<span></span>").addClass("badge rounded-pill bg-success").append(res.fromUser).append(": ").append(res.contentText)).append("<br/>")
+        var t = $("<div></div>")
+                .addClass("toast").attr("role", "alert").attr("aria-live", "assertive").attr("aria-atomic", "true")
+                .append(
+                        $("<div></div>").addClass("toast-header").append(
+                                $("<strong></strong>").addClass("me-auto").append(res.fromUser)
+                        ).append(
+                                // type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"
+                                $("<button></button>").addClass("btn-close").attr("type", "button").attr("data-bs-dismiss", "toast").attr("aria-label", "Close")
+                        )
+                ).append(
+                        $("<div></div>").addClass("toast-body").append(res.contentText)
+        ).appendTo("#toastTable")
+        new bootstrap.Toast(t[0]).show()
+      };
+      //关闭事件
+      socket.onclose = function() {
+        console.log("websocket已关闭");
+      };
+      //发生了错误事件
+      socket.onerror = function() {
+        console.log("websocket发生了错误");
+      }
+    }
+    function sendMessage() {
+      socket.send('{"fromUser":"'+$("#userId").val()+'","toUserId":"'+$("#toUserId").val()+'","contentText":"'+$("#contentText").val()+'"}');
+      // console.log('{"fromUser":"'+$("#userId").val()+'","toUserId":"'+$("#toUserId").val()+'","contentText":"'+$("#contentText").val()+'"}');
+      $("#msg_append").append($("<span></span>").addClass("badge rounded-pill bg-success").append("me: ").append($("#contentText").val())).append("<br/>")
+    }
+
+    function sendAsycMessage(){
+      var fromUser = $("#userId").val();
+      var toUserId = $("#toUserId").val();
+      var contentText = $("#contentText").val();
+
+      $.ajax({
+        url: "/send",
+        method: "post",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify({
+          "fromUser": fromUser,
+          "toUserId": toUserId,
+          "contentText": contentText
+        }),
+        success: res => {
+          if(res.code == 200)
+            $("#msg_append").append($("<span></span>").addClass("badge rounded-pill bg-info").append("me: ").append(contentText)).append("<br/>")
+          else
+            console.log(res)
+        }
+      })
+    }
+
+    function downloadExcel() {
+      var xhr = new XMLHttpRequest();
+      var url = '/api/user/download'
+      xhr.open("GET", url);
+      xhr.responseType = "blob";
+      xhr.onload = function() {
+        xhr.response.text().then((res)=>{
+          try{
+            var resJson = $.parseJSON(res);
+            alert(resJson.message)
+          }catch (e) {
+            let a = document.createElement("a");
+            let objectUrl = URL.createObjectURL(xhr.response);
+            a.setAttribute("href", objectUrl);
+            a.setAttribute("download", "user.xlsx");
+            a.click();
+          }
+
+        })
+      };
+      xhr.onerror = function() {
+        console.error("could not download file");
+      };
+      xhr.send();
+    }
+
+    function openFileWindow() {
+      while($("#uploadFile").length>0) $("#uploadFile").remove()
+      var files = $("<input type='file' id='uploadFile' class='d-none'/>")
+      $("body").append(files)
+      files.on('change', function (){
+        uploadFileFunc()
+      })
+      files.click()
+    }
+
+    function uploadFileFunc() {
+      var files = $("#uploadFile")[0].files
+      if(files.length <=0 ){
+        return alert('请选择文件后再上传！')
+      }
+      // console.log(files)
+      // 使用jQuery发起上传文件请求
+      var fd = new FormData()
+      fd.append('file',files[0])
+      $.ajax({
+        type:'post',
+        url:'/api/user/upload',
+        data:fd,
+        processData:false,
+        contentType:false,
+        success:function(res){
+          console.log(res)
+        }
+      })
+    }
+
+  </script>
+</html>

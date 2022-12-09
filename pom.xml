@@ -11,6 +11,7 @@
     <modules>
         <module>mybatisplus_quickstart</module>
         <module>springboot-websocket</module>
+        <module>springboot-upload</module>
     </modules>
 
     <dependencyManagement>

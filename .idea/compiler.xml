@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mybatisplus_quickstart" />
         <module name="springboot-websocket" />
+        <module name="springboot-upload" />
       </profile>
     </annotationProcessing>
   </component>
