@@ -207,6 +207,7 @@
                     var endDate = new Date();
                     if(res.success){
                         $("#title").text("文件上传耗时:" + (endDate - startDate) / 1000 + "s")
+                        $("tbody").empty()
                     }else{
                         $("#title").text("上传文件失败耗时:" + (endDate - startDate) / 1000 + "s")
                     }

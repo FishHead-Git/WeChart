@@ -34,6 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 @RequestMapping(value = "/bigfile")
@@ -264,6 +265,7 @@ public class BigFileController {
                 }
                 dir.delete(); //删除分片所在的文件夹
             }
+            AtomicBoolean hasErrVos = new AtomicBoolean(false);
 
             // 进行读取Excel操作
             try {
@@ -284,6 +286,7 @@ public class BigFileController {
                                 (vos, user)->userService.saveBatch(vos, "fishhead",1000),
                                 (delVos, errVos)->{},
                                 (errVos)->{
+                                    hasErrVos.set(true);
                                     webSocketServer.sendInfo("fishhead", JSON.toJSONString(APIResult.FAIL("有未通过校验数据",errVos)));
                                 },
                                 new HashMap<>(),
@@ -294,6 +297,10 @@ public class BigFileController {
                         .readCacheSelector(new SimpleReadCacheSelector(5, 20))
                         .sheet()
                         .doRead();
+
+                if(hasErrVos.get()){
+                    return APIResult.FAIL();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 response.reset();
@@ -336,34 +343,42 @@ public class BigFileController {
     public APIResult uploadAllFile(MultipartFile file, HttpServletResponse response) {
         webSocketServer.sendInfo("fishhead",JSON.toJSONString(APIResult.SUCCESS("read",1)));
         if(file == null || file.isEmpty() || !file.getOriginalFilename().endsWith(".xlsx")) return APIResult.FAIL();
+        AtomicBoolean hasErrVos = new AtomicBoolean(false);
+
+        // 进行读取Excel操作
         try {
             EasyExcel.read(file.getInputStream(),
-                    Users.class,
-                    new UploadExcelListener<Users>(
-                            ()->{userService.truncateUser();return null;},
-                            (maps, tList)-> {
-                                Users users = tList.pollLast();
-                                if(StringUtils.isEmpty(users.getUsername())||StringUtils.isEmpty(users.getPassword())){
-                                    return users;
-                                }
-                                // 设置密码加密
-                                users.setPassword(PasswordEncoderUtils.encoder(users.getPassword()));
-                                tList.add(users);
-                                return null;
-                            },
-                            (vos, user)->userService.saveBatch(vos, "fishhead",1000),
-                            (delVos, errVos)->{},
-                            (errVos)->{
-                                webSocketServer.sendInfo("fishhead", JSON.toJSONString(APIResult.FAIL("有未通过校验数据",errVos)));
-                            },
-                            new HashMap<>(),
-                            10000,
-                            "fishhead",
-                            webSocketServer
-                    ))
+                            Users.class,
+                            new UploadExcelListener<Users>(
+                                    ()->{userService.truncateUser();return null;},
+                                    (maps, tList)-> {
+                                        Users users = tList.pollLast();
+                                        if(StringUtils.isEmpty(users.getUsername())||StringUtils.isEmpty(users.getPassword())){
+                                            return users;
+                                        }
+                                        // 设置密码加密
+                                        users.setPassword(PasswordEncoderUtils.encoder(users.getPassword()));
+                                        tList.add(users);
+                                        return null;
+                                    },
+                                    (vos, user)->userService.saveBatch(vos, "fishhead",1000),
+                                    (delVos, errVos)->{},
+                                    (errVos)->{
+                                        hasErrVos.set(true);
+                                        webSocketServer.sendInfo("fishhead", JSON.toJSONString(APIResult.FAIL("有未通过校验数据",errVos)));
+                                    },
+                                    new HashMap<>(),
+                                    10000,
+                                    "fishhead",
+                                    webSocketServer
+                            ))
                     .readCacheSelector(new SimpleReadCacheSelector(5, 20))
                     .sheet()
                     .doRead();
+
+            if(hasErrVos.get()){
+                return APIResult.FAIL();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             response.reset();

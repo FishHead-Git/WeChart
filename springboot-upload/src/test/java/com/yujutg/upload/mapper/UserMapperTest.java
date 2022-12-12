@@ -54,7 +54,7 @@ public class UserMapperTest {
         log.info("{}", timeMap);
     }
 
-    @RepeatedTest(5)
+    @RepeatedTest(1)
     void insertBatchByUserThousand() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -80,7 +80,7 @@ public class UserMapperTest {
         timeMap.put(batch + "-" + everyBatch, orDefault);
     }
 
-    @RepeatedTest(5)
+    @RepeatedTest(1)
     void insertBatchByUserThousand2() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -106,7 +106,7 @@ public class UserMapperTest {
         timeMap.put(batch + "-" + everyBatch, orDefault);
     }
 
-    @RepeatedTest(5)
+    @RepeatedTest(1)
     void insertBatchByUserThousand3() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -132,7 +132,7 @@ public class UserMapperTest {
         timeMap.put(batch + "-" + everyBatch, orDefault);
     }
 
-    @RepeatedTest(5)
+    @RepeatedTest(1)
     void insertBatchByUserThousand4() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
